@@ -9,7 +9,7 @@
   --ramo:#3E6A30; --ramo-2:#2F5425; --folha:#B3CB7A; --folha-2:#D5E3AE;
   --mata:#1C3A2A; --mata-2:#14291E; --latao:#B8954A; --luz:#F3C56A;
   --vidro:#B3CB7A; --sombra-folha:.10;
-  --wa:#25D366;
+  --wa:#25D366; --painel:#1C3A2A; --painel-borda:none;
   --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
   --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --max:1240px; --gut:clamp(18px,4vw,48px);
@@ -22,7 +22,7 @@
     --cal:#0F1D16; --cal-2:#152820; --papel:#13231B;
     --tinta:#E8EDE2; --tinta-2:#A7B5A8; --linha:#2B4134;
     --ramo:#B3CB7A; --ramo-2:#CFE0A0; --folha:#B3CB7A; --folha-2:#3E5A33;
-    --mata:#0A1510; --mata-2:#07100C; --vidro:#F3C56A; --sombra-folha:0;
+    --mata:#0A1510; --mata-2:#07100C; --vidro:#F3C56A; --sombra-folha:0; --painel:#22402F; --painel-borda:0 0 0 1px rgba(243,197,106,.22),0 30px 80px -30px rgba(243,197,106,.25);
     color-scheme:dark;
   }
 }
@@ -30,7 +30,7 @@
   --cal:#0F1D16; --cal-2:#152820; --papel:#13231B;
   --tinta:#E8EDE2; --tinta-2:#A7B5A8; --linha:#2B4134;
   --ramo:#B3CB7A; --ramo-2:#CFE0A0; --folha:#B3CB7A; --folha-2:#3E5A33;
-  --mata:#0A1510; --mata-2:#07100C; --vidro:#F3C56A; --sombra-folha:0;
+  --mata:#0A1510; --mata-2:#07100C; --vidro:#F3C56A; --sombra-folha:0; --painel:#22402F; --painel-borda:0 0 0 1px rgba(243,197,106,.22),0 30px 80px -30px rgba(243,197,106,.25);
   color-scheme:dark;
 }
 
@@ -100,7 +100,7 @@ h3{font-size:clamp(25px,2vw,30px);line-height:1.12}
 .menu-open .menu-btn span{background:transparent}
 .menu-open .menu-btn span::before{top:0;transform:rotate(45deg)}
 .menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
-@media (max-width:980px){
+@media (max-width:1120px){
   .nav,.top .btn{display:none}
   .menu-btn{display:grid}
   .brand b{font-size:24px}
@@ -191,21 +191,22 @@ h3{font-size:clamp(25px,2vw,30px);line-height:1.12}
 @media (max-width:860px){.cuidado{grid-template-columns:1fr}.cuidado__head{position:static}.grupo li{flex-direction:column;gap:2px}.grupo li span{text-align:left}}
 
 /* ===== quem é quem (índice interativo) ===== */
-.equipe{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,100px);align-items:center;margin-top:clamp(30px,4vw,56px)}
+.equipe{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;margin-top:clamp(30px,4vw,56px)}
 .equipe__lista{list-style:none;margin:0;padding:0;counter-reset:x}
-.equipe__lista button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:18px;width:100%;padding:10px 0;font-family:var(--serif);font-size:clamp(30px,3.4vw,52px);line-height:1.1;color:color-mix(in srgb,var(--tinta) 38%,transparent);transition:color .35s,padding-left .45s cubic-bezier(.2,.8,.2,1)}
+.equipe__lista button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:18px;width:100%;padding:9px 0;font-family:var(--serif);font-size:clamp(28px,2.9vw,44px);line-height:1.1;color:color-mix(in srgb,var(--tinta) 38%,transparent);transition:color .35s,padding-left .45s cubic-bezier(.2,.8,.2,1)}
 .equipe__lista button::before{content:"";width:0;height:2px;background:var(--ramo);transition:width .45s cubic-bezier(.2,.8,.2,1);flex:none}
 .equipe__lista button[aria-selected="true"]{color:var(--tinta)}
 .equipe__lista button[aria-selected="true"]::before{width:clamp(24px,3vw,46px)}
 .equipe__lista button:hover{color:var(--tinta)}
 .equipe__lista button:focus-visible{outline:3px solid var(--latao);outline-offset:4px}
-.equipe__painel{position:relative;min-height:330px;background:var(--mata);color:#EEF3E6;border-radius:var(--r-arco);padding:clamp(70px,9vw,120px) clamp(28px,4vw,56px) clamp(34px,4vw,52px);overflow:hidden}
-.equipe__painel::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.5px;background:rgba(255,255,255,.08)}
-.equipe__painel::after{content:"";position:absolute;left:0;right:0;top:46%;height:1.5px;background:rgba(255,255,255,.08)}
-.equipe__painel > div{position:relative;z-index:1}
-.equipe__painel h3{color:#fff;font-size:clamp(30px,2.6vw,40px)}
-.equipe__painel p{font-size:clamp(18px,1.25vw,21px);line-height:1.55;color:rgba(238,243,230,.9);margin:0;max-width:30em}
-.equipe__painel .ico{display:block;width:46px;height:46px;color:var(--folha);margin-bottom:22px}.equipe__painel .ico svg{width:100%;height:100%}
+.equipe__painel{position:relative;width:100%;max-width:500px;justify-self:end;container-type:inline-size;background:var(--painel);color:#EEF3E6;border-radius:var(--r-arco);overflow:hidden;box-shadow:var(--painel-borda)}
+.equipe__painel::before{content:"";position:absolute;left:50%;top:0;height:50cqw;width:1.5px;background:rgba(238,243,230,.12)}
+.equipe__painel::after{content:"";position:absolute;left:0;right:0;top:50cqw;height:1.5px;background:rgba(238,243,230,.12)}
+.equipe__painel > div{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 clamp(24px,9cqw,52px) clamp(32px,9cqw,52px)}
+.equipe__painel .ico{display:grid;place-items:center;width:clamp(64px,19cqw,92px);height:clamp(64px,19cqw,92px);border-radius:50%;background:var(--vidro);color:var(--mata-2);margin-top:calc(29cqw - clamp(32px,9.5cqw,46px));margin-bottom:calc(21cqw - clamp(32px,9.5cqw,46px) + clamp(24px,6cqw,36px));box-shadow:0 0 0 8px var(--painel)}
+.equipe__painel .ico svg{width:46%;height:46%}
+.equipe__painel h3{color:#fff;font-size:clamp(30px,8cqw,42px);margin-bottom:.35em}
+.equipe__painel p{font-size:clamp(17px,4cqw,20px);line-height:1.55;color:rgba(238,243,230,.88);margin:0;max-width:24em;min-height:calc(4 * 1.55em)}
 .equipe__painel .in{animation:surge .55s cubic-bezier(.2,.8,.2,1)}
 @keyframes surge{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (max-width:860px){
@@ -216,7 +217,7 @@ h3{font-size:clamp(25px,2vw,30px);line-height:1.12}
   .equipe__lista button{font-family:var(--sans);font-size:16px;font-weight:600;padding:10px 16px;border:1.5px solid var(--linha);border-radius:24px;color:var(--tinta-2);white-space:nowrap}
   .equipe__lista button::before{display:none}
   .equipe__lista button[aria-selected="true"]{background:var(--tinta);color:var(--cal);border-color:var(--tinta)}
-  .equipe__painel{min-height:300px;padding-top:56px}
+  .equipe__painel{justify-self:center}
 }
 
 /* ===== quartos ===== */
